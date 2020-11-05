@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odd even game</title>
     <style>
-        *{
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        body{
+
+        body {
             height: 100%;
             width: 100%;
             position: absolute;
@@ -20,18 +21,20 @@
             align-items: center;
 
         }
+
         .container {
             border: 2px solid black;
             width: 90vh;
             height: 90vh;
             display: flex;
-            flex-wrap:wrap ;
+            flex-wrap: wrap;
             flex-direction: column;
             box-sizing: content-box;
         }
-        .box .selected{
-            width: 9vh;
-            height: 9vh;
+
+        .box {
+            width: 18vh;
+            height: 18vh;
             border: 1px dashed;
             font-size: 1.25em;
             font-family: sans-serif;
@@ -39,12 +42,19 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
+
+
+
+
+        }
+
+        .box.selected {
             background: skyblue;
             color: navy;
-     
-            
+            cursor: pointer;
         }
-        .timer{
+
+        .timer {
             width: 15vh;
             height: 15vh;
             border: 6px solid;
@@ -60,20 +70,50 @@
             user-select: none;
             cursor: pointer;
         }
-        
-    
 
+        .hidden {
+            display: none;
+        }
+
+        .placard {
+            width: 20%;
+            height: 20%;
+            border: 2px solid;
+            font-size: 18px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            font-weight: bold;
+
+        }
+
+        .placard.initial {
+            /* width: 0;
+            height: 0; */
+            opacity: 0;
+        }
     </style>
 </head>
 
 <body>
-    
+
 
     <div class="container">
+
         <!-- boxes will be created programmatically -->
 
 
     </div>
+    <div class="placard initial">
+        Select all xxx numbers. <br>
+        Only 10secs to select...
+
+    </div>
+
+
     <div class="timer">
         10
     </div>

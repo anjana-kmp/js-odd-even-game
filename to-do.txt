@@ -6,16 +6,16 @@ Done:
     starting the timer or game
     filled boxes with 1-25
     provide a message to select either odd or even
-
+    adding the score:-
+        10 for right answer
+        -2 for wrong answer
 
 
 
 
 
 To do:
-    adding the score:-
-        10 for right answer
-        -2 for wrong answer
+    
     show the final score in a dialog box
 
     

@@ -1,3 +1,4 @@
+let SELECTION_TYPE = ''
 var arr = []
 function shuffleNumbers() {
     arr = []
@@ -58,40 +59,72 @@ function startTimer() {
 
 function startGame() {
     document.querySelectorAll('.box').forEach
-    addEventListener('click', (e) => {
-        if (e.target.className.indexOf('selected') == -1) {
-            e.target.className += ' selected'
+    addEventListener('click', (event) => {
+        if (event.target.className.indexOf('selected') == -1) {
+            event.target.className += ' selected'
+            checkAnswer(+event.target.textContent)
 
         }
     })
-    startTimer() 
+    startTimer()
+
 
 }
-function showPlacard(){
+function checkAnswer(txtcontent) {
+    let correctEl = document.querySelector('.correct')
+    let incorrectEl = document.querySelector('.incorrect')
+    let isCorrect = false
+    if (SELECTION_TYPE == 'ODD') {
+
+        if (txtcontent % 2 != 0) {
+           isCorrect = true 
+        }
+    }else if(SELECTION_TYPE == 'EVEN'){
+        if(txtcontent % 2 == 0 ){
+            isCorrect = true
+        }
+    }
+    if(isCorrect){
+        let currentHt = +correctEl.style.height.toString().replace('%','')
+        currentHt+=100/13
+        correctEl.style.height = currentHt+'%'
+
+    }else {
+        let currentHt = +incorrectEl.style.height.toString().replace('%','')
+        currentHt+=100/13
+        incorrectEl.style.height = currentHt+'%'
+
+    }
+
+}
+function showPlacard() {
+
     let placardTxt = document.querySelector('.placard').textContent
-    let arr = ['ODD','EVEN']
-    let index = +(Math.random()>.5)
-    placardTxt = placardTxt.replace('xxx', arr[index])
-    document.querySelector('.placard').textContent=placardTxt
-    
+    let arr = ['ODD', 'EVEN']
+    let index = +(Math.random() > .5)
+    SELECTION_TYPE = arr[index]
+    placardTxt = placardTxt.replace('xxx', SELECTION_TYPE)
+    document.querySelector('.placard').textContent = placardTxt
 
-    animatePlacard(0,1)
-    setTimeout(()=>{
-        animatePlacard(1,0)
-    },3000)
-    setTimeout(()=>{
+
+    animatePlacard(0, 1)
+    setTimeout(() => {
+        animatePlacard(1, 0)
+    }, 3000)
+    setTimeout(() => {
         startGame()
-    },5000)
+        document.querySelector('.placard').className += ' hidden'
+    }, 5000)
 }
 
-function animatePlacard(initial,final){
+function animatePlacard(initial, final) {
     document.querySelector('.placard').animate([
-        {opacity:initial},
+        { opacity: initial },
 
-        {opacity:final},
-        
-        
-    ],{duration:1000,fill:'forwards'})
+        { opacity: final },
+
+
+    ], { duration: 1000, fill: 'forwards' })
 }
 const showScore = () => {
 

@@ -72,7 +72,8 @@
         }
 
         .hidden {
-            display: none;
+            display: none !important;
+
         }
 
         .placard {
@@ -95,6 +96,34 @@
             height: 0; */
             opacity: 0;
         }
+        .scorecard{
+            width:12vh ;
+            height: 30vh;
+            border: 2px solid;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-end;
+            
+
+        }
+        .correct{
+            border: 1px solid;
+            width: 50%;
+            height: 0%;
+            background-color: green;
+        }
+        .incorrect{
+            border: 1px solid;
+            width: 50%;
+            height: 0%;
+            background-color: red;
+           
+            
+        }
     </style>
 </head>
 
@@ -116,6 +145,15 @@
 
     <div class="timer">
         10
+    </div>
+    <div class="scorecard">
+        <div class="correct">
+
+        </div>
+        <div class="incorrect">
+
+        </div>
+        
     </div>
     <script src="./oddevengame.js"></script>
 </body>

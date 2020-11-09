@@ -51,25 +51,36 @@ function startTimer() {
             startGame()
             clearInterval(intervalCanceler)
             // animatePlacard(0,1)
+            let correctEl = document.querySelector('.correct')
 
+            let currentHt = +correctEl.style.height.toString().replace('%', '')
+            alert('You scored ' + (currentHt) + '%')
+            document.querySelectorAll('.box').forEach
+            removeEventListener('click', onClick)
         }
+    
     }, 1000)
 
 }
 
 function startGame() {
     document.querySelectorAll('.box').forEach
-    addEventListener('click', (event) => {
-        if (event.target.className.indexOf('selected') == -1) {
-            event.target.className += ' selected'
-            checkAnswer(+event.target.textContent)
-
-        }
-    })
-    startTimer()
-
-
+    addEventListener('click', onClick)
 }
+
+
+
+
+function onClick(event) {
+    if (event.target.className.indexOf('selected') == -1) {
+        event.target.className += ' selected'
+
+        checkAnswer(+event.target.textContent)
+
+    }
+}
+
+
 function checkAnswer(txtcontent) {
     let correctEl = document.querySelector('.correct')
     let incorrectEl = document.querySelector('.incorrect')
@@ -77,22 +88,22 @@ function checkAnswer(txtcontent) {
     if (SELECTION_TYPE == 'ODD') {
 
         if (txtcontent % 2 != 0) {
-           isCorrect = true 
+            isCorrect = true
         }
-    }else if(SELECTION_TYPE == 'EVEN'){
-        if(txtcontent % 2 == 0 ){
+    } else if (SELECTION_TYPE == 'EVEN') {
+        if (txtcontent % 2 == 0) {
             isCorrect = true
         }
     }
-    if(isCorrect){
-        let currentHt = +correctEl.style.height.toString().replace('%','')
-        currentHt+=100/13
-        correctEl.style.height = currentHt+'%'
+    if (isCorrect) {
+        let currentHt = +correctEl.style.height.toString().replace('%', '')
+        currentHt += 100/13
+        correctEl.style.height = currentHt + '%'
 
-    }else {
-        let currentHt = +incorrectEl.style.height.toString().replace('%','')
-        currentHt+=100/13
-        incorrectEl.style.height = currentHt+'%'
+    } else {
+        let currentHt = +incorrectEl.style.height.toString().replace('%', '')
+        currentHt += 100/13
+        incorrectEl.style.height = currentHt + '%'
 
     }
 
@@ -113,8 +124,10 @@ function showPlacard() {
     }, 3000)
     setTimeout(() => {
         startGame()
+        startTimer()
+
         document.querySelector('.placard').className += ' hidden'
-    }, 5000)
+    },5000)
 }
 
 function animatePlacard(initial, final) {

@@ -146,18 +146,23 @@ function animatePlacard(initial, final) {
 const showScore = (currentHt) => {
     let numStars = Math.floor(currentHt/20)
     var placard = document.querySelector('.placard')
+    if(numStars>1){
+        placard.textContent = 'You won'
+
+    }else{
+        placard.textContent = 'You lose'
+    }
     placard.classList.remove('hidden')
-    placard.textContent = 'You won'
     let section = document.createElement('section')
     placard.appendChild(section)
     animatePlacard(0,1)
     
-    do{
+    while(numStars>0){
         let star = document.createElement('img')
         star.src = './images/star.png'
         section.appendChild(star)
         numStars--
-    }while(numStars>0)
+    }
 
 }
 

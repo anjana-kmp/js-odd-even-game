@@ -54,9 +54,10 @@ function startTimer() {
             let correctEl = document.querySelector('.correct')
 
             let currentHt = +correctEl.style.height.toString().replace('%', '')
-            alert('You scored ' + (currentHt) + '%')
+            // alert('You scored ' + (currentHt) + '%')
             document.querySelectorAll('.box').forEach
             removeEventListener('click', onClick)
+            showScore(currentHt)
         }
     
     }, 1000)
@@ -104,6 +105,9 @@ function checkAnswer(txtcontent) {
         let currentHt = +incorrectEl.style.height.toString().replace('%', '')
         currentHt += 100/13
         incorrectEl.style.height = currentHt + '%'
+        let reduction = (100/13)*.2
+        let correctElHt = +correctEl.style.height.toString().replace('%', '')
+        correctEl.style.height = (correctElHt-reduction)+'%'
 
     }
 
@@ -139,7 +143,21 @@ function animatePlacard(initial, final) {
 
     ], { duration: 1000, fill: 'forwards' })
 }
-const showScore = () => {
+const showScore = (currentHt) => {
+    let numStars = Math.floor(currentHt/20)
+    var placard = document.querySelector('.placard')
+    placard.classList.remove('hidden')
+    placard.textContent = 'You won'
+    let section = document.createElement('section')
+    placard.appendChild(section)
+    animatePlacard(0,1)
+    
+    do{
+        let star = document.createElement('img')
+        star.src = './images/star.png'
+        section.appendChild(star)
+        numStars--
+    }while(numStars>0)
 
 }
 
